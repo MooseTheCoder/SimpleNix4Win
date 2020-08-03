@@ -1,8 +1,8 @@
 {
-  "name": "cat",
+  "name": "touch",
   "version": "1.0.0",
-  "description": "SimpleNix4Win Cat : A cut down version of the cat command",
-  "main": "cat.js",
+  "description": "SimpleNix4Win Touch : A cut down version of the touch command",
+  "main": "touch.js",
   "bin":"bin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
