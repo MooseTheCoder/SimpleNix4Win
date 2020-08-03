@@ -1,12 +1,17 @@
+const VERSION = "0.0.1";
 const fs = require('fs');
 const AllowedArgs = {
+	// Show Ends
 	'-E':{func:'ShowEnds'},
 	'--show-ends':{func:'ShowEnds'},
+	// Number lines
 	'-n':{func:'NumberLines'},
+	'--number':{func:'NumberLines'}
 };
 const CommandDesc = {
 	'SimpleNix4Win - Cat':'A cut down version of of the unix cat command, built for windows',
-	'-E, --show-ends':'display $ at end of each line'
+	'-E, --show-ends':'\n\tdisplay $ at end of each line',
+	'-n, --number':'\n\tnumber all output lines',
 }
 const StringSplitRegex = /\r\n|\r|\n/;
 const ArgFunctions = {
@@ -33,7 +38,6 @@ const ArgFunctions = {
 		})
 	}
 }
-const VERSION = "0.0.1";
 module.exports = async function(UserArgs){
 	// Check the the passed args with allowed args
 	let FileContents = '';
@@ -52,14 +56,17 @@ module.exports = async function(UserArgs){
 		}
 		if(AllowedArgs[arg]){
 			// This is a valid argument
-			Ammendments.push(ArgFunctions[AllowedArgs[arg].func]);
+			if(!Ammendments.includes(ArgFunctions[AllowedArgs[arg].func])){
+				// Only add it to ammendments list once.
+				Ammendments.push(ArgFunctions[AllowedArgs[arg].func]);
+			}
 		}else{
 			// This is not an arg, is it a file?
 			let isFile = await fs.existsSync(arg);
 			// TODO : Fail on permissions
 			if(isFile){
 				// Yes
-				FileContents = await fs.readFileSync(arg).toString();
+				FileContents+=await fs.readFileSync(arg).toString();
 			}else{
 				// No
 				console.log('File "'+arg+'" not found.');
