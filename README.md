@@ -48,3 +48,13 @@ Shadow of `dir`
 
 - Planning to add better listing formatting options
 
+### rm (bat)
+
+Shadow of `del`
+- Planning on adding flag support for things like rm -rf
+
+### touch (node)
+
+Cut down version that can only create files, 
+
+- Timestamp modification to be added at a later date
