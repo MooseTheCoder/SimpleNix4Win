@@ -33,6 +33,8 @@ Supported Arguments
 - --help
 - --version
 - -n
+- --show-tabs
+- -t
 
 ### history (bat)
 
