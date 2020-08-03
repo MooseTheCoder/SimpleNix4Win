@@ -8,10 +8,11 @@ const CommandDesc = {
 	'SimpleNix4Win - Cat':'A cut down version of of the unix cat command, built for windows',
 	'-E, --show-ends':'display $ at end of each line'
 }
+const StringSplitRegex = /\r\n|\r|\n/;
 const ArgFunctions = {
 	'ShowEnds':async (str)=>{
 		return new Promise(async resolve => {
-			str = str.split('\r\n');
+			str = str.split(StringSplitRegex);
 			let l = str.length;
 			while(l--){
 				str[l] = str[l]+'$';
@@ -22,7 +23,7 @@ const ArgFunctions = {
 	},
 	'NumberLines':async (str)=>{
 		return new Promise(async resolve => {
-			str = str.split('\r\n');
+			str = str.split(StringSplitRegex);
 			let l = str.length;
 			while(l--){
 				str[l] = (l + 1)+':'+str[l];
